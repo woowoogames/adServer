@@ -1,0 +1,39 @@
+<form action="{{ '/edit' }}" method="post" class="form-horizontal" role="form">
+
+    <div class="input-group col-sm-4">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span> Домен
+        </span>
+        <input type="text" name="domain" value="{{ @POST.domain }}" class="form-control">
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-4">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span> Премя показа с
+        </span>
+        <input type="text" name="display_rule[display_time_from]" value="@POST.display_rule.display_time_from" class="form-control">
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-4">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span> Премя показа до
+        </span>
+        <input type="text" name="display_rule[display_time_to]" value="@POST.display_rule.display_time_to" class="form-control">
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <div class="col-sm-4">
+            <input type="hidden" name="id" value="{{ @POST.id }}" />
+            <input type="hidden" name="update" value="update" />
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-edit"></span> Изменить
+            </button>
+        </div>
+    </div>
+</form>

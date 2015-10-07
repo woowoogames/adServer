@@ -1,0 +1,38 @@
+<table cellpadding="5" class="table table-hover table-bordered platform-list">
+    <thead>
+    <tr>
+        <th scope="col">Домен</th>
+        <th scope="col">Модуль</th>
+        <th scope="col">Показано объявлений</th>
+        <th scope="col">Переходов по объявлениям</th>
+        <th scope="col">Конверсия</th>
+        <th scope="col">Действие</th>
+    </tr>
+    </thead>
+
+
+    <tbody>
+    <repeat group="{{ @sites }}" value="{{ @site }}">
+        <tr class="platform" data-domain="{{ trim(@site.domain) }}">
+            <td>{{ trim(@site.domain) }}</td>
+            <td><span class="module-status"></span></td>
+            <td>{{ trim(@site.ad_views) }}</td>
+            <td>{{ trim(@site.ad_transitions) }}</td>
+            <td>
+                <check if="{{ @site.ad_transitions > 0 }}">
+                    <true>{{ ((int) trim(@site.ad_views)) / ((int) trim(@site.ad_transitions)) }}</true>
+                    <false>0</false>
+                </check>
+            </td>
+            <td>
+                <a href="{{ '/edit/'. @site.id }}" class="btn btn-primary">
+                  <span class="glyphicon glyphicon-edit"></span> Edit
+                </a>
+                <a href="{{ '/delete/'. @site.id }}" class="btn btn-danger">
+                  <span class="glyphicon glyphicon-remove"></span>Delete
+                </a>
+            </td>
+        </tr>
+    </repeat>
+    </tbody>
+</table>

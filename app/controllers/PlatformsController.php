@@ -1,8 +1,11 @@
 <?php
 class PlatformsController extends Controller {
 
-    public function index()
-    {
+    public function __construct () {
+        parent::__construct(true); // Needed authentification
+    }
+
+    public function index() {
         $platform = new Platform($this->db);
         $this->f3->set('sites',$platform->all());
         $this->f3->set('page_head','Список площадок');
@@ -24,6 +27,10 @@ class PlatformsController extends Controller {
             $this->f3->set('page_head','Изменить настройки');
             $this->f3->set('view','sites/edit.html');
         }
+    }
+
+    public function create() {
+        
     }
 
 

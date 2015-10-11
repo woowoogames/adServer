@@ -7,7 +7,9 @@
   <link href="/ui/css/bootstrap.min.css" rel="stylesheet" media="screen">
 </head>
 <body>
-  <include href="nav.html" />
+  <check if="{{ @is_authentificated }}">
+    <include href="nav.html" />
+  </check>
   <div class="container">
     <div class="jumbotron">
         <h1>{{ @page_head }}</h1>

@@ -16,13 +16,37 @@ class PlatformsController extends Controller {
         $platform = new Platform($this->db);
 
         if($this->f3->exists('POST.update')) {
-            $this->f3->set('POST.display_rule', serialize($this->f3->get('POST.display_rule')));
+            // Send config
+
+            $postdata = http_build_query(
+                array(
+                    'utm_ad_task'          => 'update_config',
+                    'utm_ad_configuration' => serialize($this->f3->get('POST'))
+                )
+            );
+
+            $opts = array('http' =>
+                array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/x-www-form-urlencoded',
+                    'content' => $postdata
+                )
+            );
+
+            $context  = stream_context_create($opts);
+
+            $res = file_get_contents('http://' . 'xn----gtbdmonb5ako1g.xn--p1ai?utm_adcontrol', false, $context);
+
+            $sync = (stripos($res, '<!--update_config: true-->') !== false) ? true : false;
+
+            $this->f3->set('POST.sync', $sync);
+
             $platform->edit($this->f3->get('POST.id'));
+
             $this->f3->reroute('/');
 
         } else {
             $platform = $platform->getById($this->f3->get('PARAMS.id'));
-            $this->f3->set('POST.display_rule', unserialize($this->f3->get('POST.display_rule')));
             $this->f3->set('site', $platform);
             $this->f3->set('page_head','Изменить настройки');
             $this->f3->set('view','sites/edit.html');

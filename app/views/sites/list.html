@@ -15,7 +15,11 @@
     <repeat group="{{ @sites }}" value="{{ @site }}">
         <tr class="platform" data-domain="{{ trim(@site.domain) }}">
             <td>{{ trim(@site.domain) }}</td>
-            <td><span class="module-status"></span></td>
+            <td>
+                <button class="btn btn-warning refresh_module_status__btn">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
+            </td>
             <td>{{ trim(@site.ad_views) }}</td>
             <td>{{ trim(@site.ad_transitions) }}</td>
             <td>
@@ -31,6 +35,9 @@
                 <a href="{{ '/delete/'. @site.id }}" class="btn btn-danger">
                   <span class="glyphicon glyphicon-remove"></span>Delete
                 </a>
+                <button class="btn btn-success refresh_stats__btn">
+                    <span class="glyphicon glyphicon-refresh"></span>
+                </button>
             </td>
         </tr>
     </repeat>

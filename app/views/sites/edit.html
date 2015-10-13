@@ -1,6 +1,6 @@
 <form action="{{ '/edit' }}" method="post" class="form-horizontal" role="form">
 
-    <div class="input-group col-sm-4">
+    <div class="input-group col-sm-5">
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span> Домен
         </span>
@@ -9,26 +9,35 @@
 
     <br>
 
-    <div class="input-group col-sm-4">
+    <div class="input-group col-sm-5">
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span> Премя показа с
         </span>
-        <input type="text" name="display_rule[display_time_from]" value="@POST.display_rule.display_time_from" class="form-control">
+        <input type="text" name="display_from_time" value="{{ @POST.display_from_time }}" class="form-control">
     </div>
 
     <br>
 
-    <div class="input-group col-sm-4">
+    <div class="input-group col-sm-5">
         <span class="input-group-addon">
-            <span class="glyphicon glyphicon-time"></span> Премя показа до
+            <span class="glyphicon glyphicon-time"></span> Премя показа по
         </span>
-        <input type="text" name="display_rule[display_time_to]" value="@POST.display_rule.display_time_to" class="form-control">
+        <input type="text" name="display_to_time" value="{{ @POST.display_to_time }}" class="form-control">
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-5">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span> Минимальное время сбора статистики
+        </span>
+        <input type="text" name="min_collect_time" value="{{ @POST.min_collect_time }}" class="form-control">
     </div>
 
     <br>
 
     <div class="form-group">
-        <div class="col-sm-4">
+        <div class="col-sm-5">
             <input type="hidden" name="id" value="{{ @POST.id }}" />
             <input type="hidden" name="update" value="update" />
             <button type="submit" class="btn btn-primary">

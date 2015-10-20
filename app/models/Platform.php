@@ -12,7 +12,7 @@
         }
         public function add()
         {
-            $this->copyFrom('POST');
+            $this->copyFrom('platform');
             $this->save();
         }
         public function getById($id)

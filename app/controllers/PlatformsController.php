@@ -12,6 +12,14 @@ class PlatformsController extends Controller {
         $this->f3->set('view','sites/list.html');
     }
 
+    public function delete() {
+        if ($this->f3->exists('PARAMS.id')) {
+            $platform = new Platform($this->db);
+            $platform->delete($this->f3->get('PARAMS.id'));
+            $this->f3->reroute('/');
+        }
+    }
+
     public function edit() {
         $platform = new Platform($this->db);
 
@@ -54,6 +62,25 @@ class PlatformsController extends Controller {
     }
 
     public function create() {
+        $platform = new Platform($this->db);
+
+        if ($this->f3->exists('PARAMS.domain')) {
+
+            $dCfg = json_decode(file_get_contents($_SERVER['DOCUMENT_ROOT'] . '/config/defaul_cfg.json'), true);
+
+            $dCfg['domain'] = $this->f3->get('PARAMS.domain');
+
+            $this->f3->set('platform', $dCfg);
+
+            $platform->add();
+
+            $this->f3->reroute('/');
+
+        } else {
+
+
+
+        }
         
     }
 

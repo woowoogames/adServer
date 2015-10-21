@@ -14,8 +14,6 @@
 
                 if ($this->f3->exists('platform.id')) {
 
-                    print_r($this->f3->get('platform'));
-
                     $this->f3->set('serialize_mode', true);
 
                     $this->f3->set('_data', $dCfg);

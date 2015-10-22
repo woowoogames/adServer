@@ -14,10 +14,10 @@
     <tbody>
     <repeat group="{{ @sites }}" value="{{ @site }}">
         <tr class="platform" data-domain="{{ trim(@site.domain) }}">
-            <td>{{ trim(@site.domain) }}</td>
-            <td>
-                <button class="btn btn-warning refresh_module_status__btn">
-                    <span class="glyphicon glyphicon-refresh"></span>
+            <td><h4><a href="http://{{ trim(@site.domain) }}" target="_blank">{{ trim(@site.domain) }}</a></td>
+            <td class="text-center">
+                <button class="btn btn-warning refresh_module_status__btn" data-domain="{{ trim(@site.domain) }}">
+                    <span class="glyphicon glyphicon-refresh spin"></span>
                 </button>
             </td>
             <td>{{ trim(@site.ad_views) }}</td>
@@ -28,14 +28,17 @@
                     <false>0</false>
                 </check>
             </td>
-            <td>
-                <a href="{{ '/edit/'. @site.id }}" class="btn btn-primary">
-                  <span class="glyphicon glyphicon-edit"></span> Edit
+            <td class="text-center">
+                <a href="{{ '/edit/'. @site.id }}" class="btn btn-primary" title="Редактировать натройки">
+                  <span class="glyphicon glyphicon-edit"></span>
                 </a>
-                <a href="{{ '/delete/'. @site.id }}" class="btn btn-danger">
-                  <span class="glyphicon glyphicon-remove"></span>Delete
+                <a href="{{ '/delete/'. @site.id }}" class="btn btn-danger" title="Удалить площадку">
+                  <span class="glyphicon glyphicon-remove"></span>
                 </a>
-                <button class="btn btn-success refresh_stats__btn">
+                <a href="{{ '/upload/'. @site.domain }}" class="btn btn-info" title="Загрузить файл">
+                  <span class="glyphicon glyphicon-plus-sign"></span>
+                </a>
+                <button class="btn refresh_stats__btn <check if='@site.sync'><true>btn-success</true><false>btn-danger</false></check>" title="Проверить актуальность конфига">
                     <span class="glyphicon glyphicon-refresh"></span>
                 </button>
             </td>

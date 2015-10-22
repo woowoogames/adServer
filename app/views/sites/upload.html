@@ -1,0 +1,35 @@
+<form action="/upload" method="post" class="form-horizontal" role="form">
+
+    <h2 class="text-center">Загрузка файла на <small>«{{ @PARAMS.domain }}»</small></h2>
+
+    <br>
+
+    <div class="input-group col-sm-8 col-sm-offset-2">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-font"></span> Имя файла
+        </span>
+        <input type="text" name="filename" required class="form-control">
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-8 col-sm-offset-2">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-align-center"></span> Контент
+        </span>
+        <textarea type="text" name="file_content" required class="form-control"></textarea>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <div class="col-sm-4 col-sm-offset-4">
+            <button type="submit" class="btn btn-block btn-primary">
+                <span class="glyphicon glyphicon-edit"></span> Загрузить
+            </button>
+        </div>
+    </div>
+
+    <input type="hidden" name="domain" value="{{ @PARAMS.domain }}" />
+    <input type="hidden" name="upload" value="upload" />
+</form>

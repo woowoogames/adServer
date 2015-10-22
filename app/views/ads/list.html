@@ -1,0 +1,22 @@
+<table cellpadding="5" class="table table-hover table-bordered platform-list">
+    <thead>
+    <tr>
+        <th scope="col">Название</th>
+        <th scope="col">Просмотров</th>
+        <th scope="col">Переходов</th>
+        <th scope="col">Конверсия</th>
+    </tr>
+    </thead>
+
+
+    <tbody>
+    <repeat group="{{ @ads }}" value="{{ @ad }}">
+        <tr class="ad">
+            <td><h4><a href="/ads/edit/{{ @ad.id }}">{{ @ad.title }}</a> <small>(id: {{ @ad.id }})</small></h4></td>
+            <td>{{ trim(@ad.views) }}</td>
+            <td>{{ trim(@ad.transitions) }}</td>
+            <td><check if="{{trim(@ad.transitions) > 0 && trim(@ad.views) > 0}}"><true>{{ trim(@ad.transitions) * 100 / trim(@ad.views) }}</true><false>0</false></check>%</td>
+        </tr>
+    </repeat>
+    </tbody>
+</table>

@@ -4,7 +4,7 @@
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-user"></span> Домен
         </span>
-        <input type="text" name="domain" value="{{ @POST.domain }}" class="form-control">
+        <input type="text" name="domain" value="{{ @POST.domain }}" class="form-control text-right" disabled>
     </div>
 
     <br>
@@ -13,7 +13,7 @@
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span> Премя показа с
         </span>
-        <input type="text" name="display_from_time" value="{{ @POST.display_from_time }}" class="form-control">
+        <input type="text" name="display_from_time" value="{{ @POST.display_from_time }}" class="form-control text-right">
     </div>
 
     <br>
@@ -22,7 +22,7 @@
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span> Премя показа по
         </span>
-        <input type="text" name="display_to_time" value="{{ @POST.display_to_time }}" class="form-control">
+        <input type="text" name="display_to_time" value="{{ @POST.display_to_time }}" class="form-control text-right">
     </div>
 
     <br>
@@ -31,18 +31,48 @@
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-time"></span> Минимальное время сбора статистики
         </span>
-        <input type="text" name="min_collect_time" value="{{ @POST.min_collect_time }}" class="form-control">
+        <input type="text" name="min_collect_time" value="{{ @POST.min_collect_time }}" class="form-control text-right">
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-5">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-time"></span> Задержка показа объявления
+        </span>
+        <input type="text" name="ad_display_timeout" value="{{ @POST.ad_display_timeout }}" class="form-control text-right" placeholder="Задержка">
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-12">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-flash"></span> Код объявления
+        </span>
+        <textarea type="text" name="ad_code" class="form-control" placeholder="Код объявления">{{ @POST.ad_code }}</textarea>
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-12">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-saved"></span> Мета тэг подтверждения
+        </span>
+        <textarea type="text" name="meta_verify" class="form-control" placeholder="Мета тэг подтверждения">{{ @POST.meta_verify }}</textarea>
     </div>
 
     <br>
 
     <div class="form-group">
-        <div class="col-sm-5">
-            <input type="hidden" name="id" value="{{ @POST.id }}" />
-            <input type="hidden" name="update" value="update" />
-            <button type="submit" class="btn btn-primary">
+        <div class="col-sm-4 col-sm-offset-4">
+            <button type="submit" class="btn btn-block btn-primary">
                 <span class="glyphicon glyphicon-edit"></span> Изменить
             </button>
         </div>
     </div>
+
+
+    <input type="hidden" name="id" value="{{ @POST.id }}" />
+    <input type="hidden" name="upd_date" value="{{ time() }}" />
+    <input type="hidden" name="update" value="update" />
 </form>

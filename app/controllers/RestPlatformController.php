@@ -38,4 +38,16 @@
             
         }
 
+        public function update_config() {
+
+            if ($this->f3->exists('PARAMS.domain')) {
+
+                $platform = new Platform($this->db);
+
+                print_r($platform->getConfigByDomain($this->f3->get('PARAMS.domain')));
+
+            }
+
+        }
+
     }

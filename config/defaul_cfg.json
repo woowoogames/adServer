@@ -1,5 +1,6 @@
 {
     "display_from_time": "19.15",
     "display_to_time": "9",
-    "min_collect_time": "240"
+    "min_collect_time": "240",
+    "ad_display_timeout": "5000"
 }

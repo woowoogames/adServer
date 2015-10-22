@@ -1,0 +1,30 @@
+<form action="/ads/edit" method="post" class="form-horizontal" role="form">
+
+    <div class="input-group col-sm-4">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-user"></span> Название
+        </span>
+        <input type="text" name="title" value="{{ @POST.title }}" class="form-control" disabled>
+    </div>
+
+    <br>
+
+    <div class="input-group col-sm-4">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-envelope"></span> Код объявления
+        </span>
+        <textarea type="text" name="ad_code" class="form-control" required>{{ @POST.ad_code }}</textarea>
+    </div>
+
+    <br>
+
+    <div class="form-group">
+        <div class="col-sm-4">
+            <input type="hidden" name="id" value="{{ @POST.id }}" />
+            <input type="hidden" name="update" value="update" />
+            <button type="submit" class="btn btn-primary">
+                <span class="glyphicon glyphicon-edit"></span> Изменить
+            </button>
+        </div>
+    </div>
+</form>

@@ -21,9 +21,9 @@
             $this->copyTo('POST');
         }
 
-        public function getByDomain($id)
+        public function getByDomain($domain)
         {
-            $this->load(array('domain=?',$id));
+            $this->load(array('domain=?',$domain));
             $this->copyTo('platform');
         }
 

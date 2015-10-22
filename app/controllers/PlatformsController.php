@@ -43,7 +43,7 @@ class PlatformsController extends Controller {
 
             $context  = stream_context_create($opts);
 
-            $res = file_get_contents('http://' . 'xn----gtbdmonb5ako1g.xn--p1ai?utm_adcontrol', false, $context);
+            $res = file_get_contents('http://' . $this->f3->get('POST.domain') . '?utm_adcontroller', false, $context);
 
             $sync = (stripos($res, '<!--update_config: true-->') !== false) ? true : false;
 

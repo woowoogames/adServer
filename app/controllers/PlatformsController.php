@@ -22,9 +22,13 @@ class PlatformsController extends Controller {
 
     public function edit() {
         $platform = new Platform($this->db);
+        $platformHasAds = new PlatformHasAds($this->db);
+
 
         if($this->f3->exists('POST.update')) {
             // Send config
+
+            $this->f3->set('POST.ads', $platformHasAds->getAdList($this->f3->get('POST.id')));
 
             $postdata = http_build_query(
                 array(
@@ -54,12 +58,7 @@ class PlatformsController extends Controller {
             $this->f3->reroute('/');
 
         } else {
-            $platformHasAds = new PlatformHasAds($this->db);
-            $ad = new Ad($this->db);
             $platform->getById($this->f3->get('PARAMS.id'));
-
-            $ads = $ad->all();
-            $pAds = $platformHasAds->getPLatformAds($this->f3->get('PARAMS.id'));
 
             $this->f3->set('ads', $ads);
             $this->f3->set('site.ads', $pAds);

@@ -2,6 +2,65 @@
 
   $(function(){
 
+        // Loading ads
+
+        var $adsSelect     = $(document).find('#ads'),
+            platformId     = $adsSelect.data('platform-id'),
+            adList         = null,
+            platformAdList = null;
+
+        if ($adsSelect.length && platformId > 0) {
+
+            $.get('/ads/json', function(resAdList){
+                adList = JSON.parse(resAdList);
+                if (adList.length) {
+
+                    $.get('/ads/json/' + platformId, function(resplatformAdList){
+                        platformAdList = JSON.parse(resplatformAdList);
+
+                        var html = '';
+
+                        $.each(adList, function(i, ad) {
+
+                            var relatedAd = ad;
+
+                            if (!_.isEmpty(_.find(platformAdList, 'ad_id', ad.id))) {
+
+                                relatedAd.selected = true;
+
+                            }
+
+                            html += '<option value="' + ad.id + '" ' + (relatedAd.selected ? 'selected' : '') + '>' + ad.title + '</option>';
+
+                        });
+
+                        $adsSelect.append(html).prop('disabled', false);
+
+                    });
+
+                }
+            });
+
+        }
+
+        // Save platform ads
+
+        $(document).on('click', '.upd_platform_ads', function(e){
+
+            e.preventDefault();
+
+            var postData = {ads: JSON.stringify($adsSelect.val())};
+
+            $.post('/ads/bind/' + platformId, postData, function(res){
+                alert('Изменения сохранены!');
+            }).fail(function(){
+                alert('Ошибка');
+            });
+
+        });
+
+        // Check module statuses
+
         $('.refresh_module_status__btn').each(function(i, el){
 
                 var $el = $(el);

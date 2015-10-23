@@ -12,6 +12,13 @@ class Ad extends DB\SQL\Mapper {
         $this->load();
         return $this->query;
     }
+
+    public function all_json()
+    {
+        $this->load();
+        return $this;
+    }
+
     public function add()
     {
         $this->copyFrom('POST');

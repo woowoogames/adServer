@@ -19,6 +19,19 @@
             }
         }
 
+        function mapperToJson() {
+            $json_data = array();
+            $_mapper = $this->f3->get('_data');
+
+            while($_mapper->next()) {
+                $_mapper->copyTo('__tmp_obj');
+                $json_data[] = $this->f3->get('__tmp_obj');
+            }
+
+            $this->f3->set('_data', $json_data);
+
+        }
+
         function __construct($need_roles = false) {
 
             $f3=Base::instance();

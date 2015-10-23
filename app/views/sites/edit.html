@@ -45,12 +45,25 @@
 
     <br>
 
-    <div class="input-group col-sm-12">
+    <!-- <div class="input-group col-sm-12">
         <span class="input-group-addon">
             <span class="glyphicon glyphicon-flash"></span> Код объявления
         </span>
         <textarea type="text" name="ad_code" class="form-control" placeholder="Код объявления">{{ @POST.ad_code }}</textarea>
     </div>
+
+    <br> -->
+
+    <div class="input-group col-sm-12">
+        <span class="input-group-addon">
+            <span class="glyphicon glyphicon-flash"></span> Объявления площадки
+        </span>
+        <select id="ads" data-platform-id="{{@POST.id}}" type="text" name="ads" class="form-control" size="auto" multiple disabled>
+        </select>
+    </div>
+
+    <button class="btn btn-primary btn-block upd_platform_ads" type="buttom">Обновить</button>
+    <br>
 
     <br>
 

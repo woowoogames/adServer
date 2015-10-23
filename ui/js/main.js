@@ -18,6 +18,8 @@
                     $.get('/ads/json/' + platformId, function(resplatformAdList){
                         platformAdList = JSON.parse(resplatformAdList);
 
+                        console.log('platformAdList', platformAdList);
+
                         var html = '';
 
                         $.each(adList, function(i, ad) {

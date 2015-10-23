@@ -23,10 +23,10 @@
             $json_data = array();
             $_mapper = $this->f3->get('_data');
 
-            while($_mapper->next()) {
+            do {
                 $_mapper->copyTo('__tmp_obj');
                 $json_data[] = $this->f3->get('__tmp_obj');
-            }
+            } while ($_mapper->next());
 
             $this->f3->set('_data', $json_data);
 

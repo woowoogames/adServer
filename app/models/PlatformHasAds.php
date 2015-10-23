@@ -30,6 +30,8 @@ class PlatformHasAds extends DB\SQL\Mapper {
 
             foreach($ads as $ad) {
 
+                echo $ad . "\n";
+
                 $GLOBALS['__DB']->exec('INSERT INTO `platform_has_ad` (platform_id, ad_id) VALUES(:platform_id,:ad_id)', array('platform_id' => $id,'ad_id' => $ad));
 
             }

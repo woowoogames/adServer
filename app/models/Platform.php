@@ -8,6 +8,7 @@
         public function all()
         {
             $this->load();
+            print_r($this->query);
             return $this->query;
         }
         public function add()

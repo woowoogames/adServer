@@ -54,8 +54,16 @@ class PlatformsController extends Controller {
             $this->f3->reroute('/');
 
         } else {
-            $platform = $platform->getById($this->f3->get('PARAMS.id'));
-            $this->f3->set('site', $platform);
+            $platformHasAds = new PlatformHasAds($this->db);
+            $ad = new Ad($this->db);
+            $platform->getById($this->f3->get('PARAMS.id'));
+
+            $ads = $ad->all();
+            $pAds = $platformHasAds->getPLatformAds($this->f3->get('PARAMS.id'));
+
+            $this->f3->set('ads', $ads);
+            $this->f3->set('site.ads', $pAds);
+
             $this->f3->set('page_head','Изменить настройки');
             $this->f3->set('view','sites/edit.html');
         }

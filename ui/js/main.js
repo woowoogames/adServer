@@ -7,13 +7,15 @@
         var $adsSelect     = $(document).find('#ads'),
             platformId     = $adsSelect.data('platform-id'),
             adList         = null,
-            platformAdList = null;
+            platformAdList = null,
+            adListLength   = 0;
 
         if ($adsSelect.length && platformId > 0) {
 
             $.get('/ads/json', function(resAdList){
                 adList = JSON.parse(resAdList);
-                if (adList.length) {
+                adListLength = adList.length
+                if (adListLength) {
 
                     $.get('/ads/json/' + platformId, function(resplatformAdList){
                         platformAdList = JSON.parse(resplatformAdList);
@@ -36,7 +38,7 @@
 
                         });
 
-                        $adsSelect.append(html).prop('disabled', false);
+                        $adsSelect.append(html).prop('disabled', false).prop('size', adListLength);
 
                     });
 

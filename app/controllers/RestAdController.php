@@ -24,4 +24,22 @@
                 }
             }
 
+            public function collect_display () {
+                header('Access-Control-Allow-Origin: *');
+
+                if ($this->f3->exists('PARAMS.adId')) {
+                    $ad = new Ad($this->db);
+                    $ad->collect_display($this->f3->get('PARAMS.adId'));
+                }
+            }
+
+            public function collect_click () {
+                header('Access-Control-Allow-Origin: *'); 
+                
+                if ($this->f3->exists('PARAMS.adId')) {
+                    $ad = new Ad($this->db);
+                    $ad->collect_click($this->f3->exists('PARAMS.adId'));
+                }
+            }
+
     }
